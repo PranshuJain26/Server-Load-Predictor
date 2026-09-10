@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>API Forecast Dashboard</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="p-6 bg-gray-100">
+
+<h1 class="text-3xl font-bold mb-6">API Forecast Dashboard</h1>
+
+<!-- ONLY TOP N DROPDOWN -->
+<div class="mb-6">
+  <select id="topSelect" class="p-2 rounded border">
+    <option value="5">Top 5</option>
+    <option value="10">Top 10</option>
+    <option value="15" selected>Top 15</option>
+  </select>
+</div>
+
+<!-- MAIN CONTAINER -->
+<div id="cards" class="space-y-6"></div>
+
+<script>
+const ALL_APIS = ["A2","A10","A66","A69","A42",
+                  "A12","A21","A47","A31","A45",
+                  "A15","A59","A18","A40","A7"];
+
+const BASE_PORT = 5000;
+const GRANULARITIES = ["hourly", "daily", "weekly", "monthly"];
+
+function renderCards() {
+  const topN = parseInt(document.getElementById("topSelect").value);
+  const apis = ALL_APIS.slice(0, topN);
+  const container = document.getElementById("cards");
+  container.innerHTML = "";
+
+  apis.forEach((api, idx) => {
+    const port = BASE_PORT + idx;
+
+    // BIG API ROW CARD
+    const apiCard = document.createElement("div");
+    apiCard.className = "bg-white p-4 rounded shadow";
+
+    apiCard.innerHTML = `
+      <h2 class="text-xl font-bold mb-4">${api}</h2>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4" id="row-${api}">
+      </div>
+    `;
+
+    container.appendChild(apiCard);
+
+    const row = document.getElementById(`row-${api}`);
+
+    GRANULARITIES.forEach(granularity => {
+      const smallCard = document.createElement("div");
+      smallCard.className = "bg-gray-100 p-3 rounded shadow-sm";
+      smallCard.innerHTML = `
+        <p class="font-semibold capitalize">${granularity}</p>
+        <p class="text-gray-500 text-sm">Loading...</p>
+      `;
+      row.appendChild(smallCard);
+
+      const url = `http://127.0.0.1:${port}/predict?granularity=${granularity}`;
+
+      fetch(url)
+        .then(res => res.json())
+        .then(data => {
+          if (data.error) {
+            smallCard.innerHTML = `
+              <p class="font-semibold capitalize">${granularity}</p>
+              <p class="text-red-500 text-sm">${data.error}</p>
+            `;
+          } else {
+            smallCard.innerHTML = `
+              <p class="font-semibold capitalize">${granularity}</p>
+              <p class="text-2xl font-bold">${data.predicted_call_count}</p>
+              <p class="text-xs text-gray-500">${data.model_type}</p>
+            `;
+          }
+        })
+        .catch(() => {
+          smallCard.innerHTML = `
+            <p class="font-semibold capitalize">${granularity}</p>
+            <p class="text-red-500 text-sm">Offline</p>
+          `;
+        });
+    });
+  });
+}
+
+document.getElementById("topSelect").addEventListener("change", renderCards);
+renderCards();
+</script>
+</body>
+</html>

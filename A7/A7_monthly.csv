@@ -1,0 +1,35 @@
+Time of Call,API Code,App Name,call_count
+2023-02-28,A7,Facebook,400
+2023-03-31,A7,Salesforce,488
+2023-04-30,A7,Spotify,406
+2023-05-31,A7,Swiggy,476
+2023-06-30,A7,Google Cloud,437
+2023-07-31,A7,Jira,440
+2023-08-31,A7,Netflix,462
+2023-09-30,A7,Stripe,506
+2023-10-31,A7,Confluence,517
+2023-11-30,A7,Jira,400
+2023-12-31,A7,Freshdesk,462
+2024-01-31,A7,Amazon,457
+2024-02-29,A7,Freshdesk,439
+2024-03-31,A7,Amazon,473
+2024-04-30,A7,LinkedIn,409
+2024-05-31,A7,Google Cloud,464
+2024-06-30,A7,Jira,459
+2024-07-31,A7,GitHub,467
+2024-08-31,A7,Twitter (X),471
+2024-09-30,A7,GitHub,425
+2024-10-31,A7,Amazon Pay,461
+2024-11-30,A7,LinkedIn,452
+2024-12-31,A7,Zoho,458
+2025-01-31,A7,Flipkart,477
+2025-02-28,A7,Salesforce,358
+2025-03-31,A7,Google Cloud,411
+2025-04-30,A7,Amazon,450
+2025-05-31,A7,Twitter (X),432
+2025-06-30,A7,Microsoft Azure,411
+2025-07-31,A7,Freshdesk,412
+2025-08-31,A7,Netflix,436
+2025-09-30,A7,GitLab,359
+2025-10-31,A7,GitHub,391
+2025-11-30,A7,Google Pay,221

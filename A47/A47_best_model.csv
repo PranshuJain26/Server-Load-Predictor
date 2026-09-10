@@ -1,0 +1,7 @@
+api_code,model,overall_rmse
+A47,RandomForest,23.006
+A47,MovingAverage,23.253
+A47,XGBoost,23.399
+A47,Naive,24.292
+A47,SARIMA,28.938
+A47,Prophet,29.088
