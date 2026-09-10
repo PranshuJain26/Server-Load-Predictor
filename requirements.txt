@@ -4,3 +4,6 @@ numpy
 joblib
 scikit-learn
 xgboost
+flask
+statsmodels
+prophet
